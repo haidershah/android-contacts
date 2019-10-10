@@ -8,6 +8,10 @@
         <variable
             name="viewModel"
             type="com.example.contacts.viewmodel.ContactDetailViewModel" />
+
+        <variable
+            name="listener"
+            type="com.example.contacts.view.listener.ContactDetailListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,11 +19,11 @@
         android:layout_height="match_parent"
         android:padding="16dp">
 
-        <TextView
+        <EditText
             android:id="@+id/firstName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.contact.firstName}"
+            android:text="@={viewModel.contact.firstName}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -56,6 +60,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/phoneNumber"
             tools:text="john@doe.gmail.com" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> listener.onSaveClicked()}"
+            android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

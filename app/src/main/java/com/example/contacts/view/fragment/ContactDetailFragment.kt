@@ -9,12 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.contacts.R
 import com.example.contacts.databinding.FragmentContactDetailBinding
+import com.example.contacts.view.listener.ContactDetailListener
 import com.example.contacts.viewmodel.ContactDetailViewModel
 import com.example.contacts.viewmodel.factory.ContactDetailViewModelFactory
 
-class ContactDetailFragment : Fragment() {
-
+class ContactDetailFragment : Fragment(), ContactDetailListener {
     private lateinit var binding: FragmentContactDetailBinding
+    private lateinit var viewModel: ContactDetailViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,13 +31,17 @@ class ContactDetailFragment : Fragment() {
             )
 
         val contact = ContactDetailFragmentArgs.fromBundle(arguments!!).contact
-        val viewModel = ViewModelProvider(
-            this, ContactDetailViewModelFactory(contact)
-        )
-            .get(ContactDetailViewModel::class.java)
+        viewModel =
+            ViewModelProvider(this, ContactDetailViewModelFactory(activity!!.application, contact))
+                .get(ContactDetailViewModel::class.java)
 
         binding.viewModel = viewModel
+        binding.listener = this
 
         return binding.root
+    }
+
+    override fun onSaveClicked() {
+        viewModel.saveContact()
     }
 }
