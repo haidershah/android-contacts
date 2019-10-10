@@ -29,11 +29,11 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="John" />
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@{viewModel.contact.lastName}"
+            android:text="@={viewModel.contact.lastName}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/firstName"
