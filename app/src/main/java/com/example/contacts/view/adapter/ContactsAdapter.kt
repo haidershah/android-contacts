@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contacts.databinding.ListItemContactBinding
 import com.example.contacts.domain.model.Contact
+import com.example.contacts.view.listener.ContactsListener
 
-class ContactsAdapter :
+class ContactsAdapter(
+    private val listener: ContactsListener
+) :
     ListAdapter<Contact, ContactsAdapter.ContactViewHolder>(ContactDiffCallback()) {
 
     class ContactViewHolder(val binding: ListItemContactBinding) :
@@ -36,6 +39,7 @@ class ContactsAdapter :
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val item = getItem(position)
         holder.binding.contact = item
+        holder.binding.listener = listener
         holder.binding.executePendingBindings()
     }
 }
