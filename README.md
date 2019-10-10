@@ -4,4 +4,5 @@ This app displays a static list of Contacts and gives users the ability to updat
 
 ## Motivation
 
-To update information on one screen and have it update a different screen by using Room and LiveData.
+To update information on one screen and have those changes propagated to a different screen 
+by using Room and LiveData.
