@@ -11,7 +11,7 @@ import com.example.contacts.domain.model.Contact
 @Dao
 interface ContactsDao {
 
-    @Query("SELECT * from contacts_table")
+    @Query("SELECT * from contacts_table ORDER BY first_name")
     fun getContacts(): LiveData<List<ContactDatabase>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
